@@ -23,3 +23,13 @@ class ProductRead(ProductBase):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class ProductFilter(BaseModel):
+    # product-level filters
+    q: str | None = Field(default=None, min_length=1, description="search query")
+    name: str | None = Field(default=None, min_length=1)
+
+    # sorting
+    sort: str | None = Field(default=None)
+    order: str = Field(default="desc", description="asc|desc")
